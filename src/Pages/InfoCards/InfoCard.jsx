@@ -1,16 +1,16 @@
 import React from 'react';
 
-const InfoCard = () => {
+const InfoCard = ({card}) => {
+
+    const {name, title, icon, bgInfoColor} = card;
+
     return (
-        <div>
-            <div className="card card-side bg-base-100 shadow-xl">
-                <figure><img src="https://placeimg.com/200/280/arch" alt="Movie"/></figure>
-                <div className="card-body">
-                    <h2 className="card-title">New movie is released!</h2>
-                    <p>Click the button to watch on Jetflix app.</p>
-                    <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Watch</button>
-                    </div>
+        <div className={bgInfoColor}>
+            <div className=" flex items-center">
+                <figure><img className='w-16 h-16' src={icon} alt="Movie"/></figure>
+                <div className=" ml-4">
+                    <h2 className="card-title text-xl">{name}</h2>
+                    <p className='mt-2'>{title}</p>
                 </div>
             </div>
         </div>
