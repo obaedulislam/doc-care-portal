@@ -3,7 +3,7 @@ import appointment from '../../../assets/images/appointment.png'
 import doctorSmall from '../../../assets/images/doctor-small.png'
 import PrimaryButton from '../../../components/Button/PrimaryButton';
  
-const Appointment = () => {
+const AppointmentHome = () => {
     return (
         <section className=""  
             style = {{
@@ -32,4 +32,4 @@ const Appointment = () => {
     );
 };
 
-export default Appointment;
+export default AppointmentHome;
