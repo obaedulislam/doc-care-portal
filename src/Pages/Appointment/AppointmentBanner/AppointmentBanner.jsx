@@ -5,13 +5,12 @@ import 'react-day-picker/dist/style.css';
 import { DayPicker } from 'react-day-picker';
 import { format } from 'date-fns';
 
-const AppointmentBanner = () => {
+const AppointmentBanner = ({ selectedDate, setSelectedDate }) => {
 
-    const [selectedDate, setSelectedDate] = useState(new Date());
 
     return (
-        <section className='px-20' 
-            style = {{
+        <section className='px-20'
+            style={{
                 background: `url(${bg})`,
                 backgroundPosition: 'bottom left',
                 backgroundSize: '75%',
@@ -26,13 +25,13 @@ const AppointmentBanner = () => {
                             selected={selectedDate}
                             onSelect={setSelectedDate}
                         ></DayPicker>
-                        <h4 className='text-xl font-semibold'>Available Appointments on: <span className='text-accent font-bold'> {format(selectedDate, 'PP')}</span> </h4>
+                        <h4 className='text-lg font-semibold'>Available Appointments on: <span className='text-accent font-bold'> {format(selectedDate, 'PP')}</span> </h4>
                     </div>
                 </div>
                 <div>
-                    <img src={chair} className="w-full" alt="Hero "/>
+                    <img src={chair} className="w-full" alt="Hero " />
                 </div>
-               
+
             </div>
         </section>
     );
