@@ -1,13 +1,41 @@
+import { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../hooks/useToken';
 
 const Login = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
+    const { signIn } = useContext(AuthContext);
+
+    const [loginError, setLoginError] = useState('');
+
+    const [loginUserEmail, setLoginUserEmail] = useState('')
+    const [token] = useToken(loginUserEmail);
+
+    //After Login Navigation
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.form?.pathname || '/';
+
+    if(token){
+        navigate(from, { replace: true });
+    }
 
     const handleLogin = data => {
         console.log(data);
-        console.log(errors);
+        setLoginError('')
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+                setLoginUserEmail(data.email)
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message)
+            })
     }
 
     return (
@@ -45,6 +73,11 @@ const Login = () => {
                     </div>
 
                     <input className='btn btn-accent w-full mt-3' type="submit" value="Login" />
+                    <div>
+                        {
+                            loginError && <p className='text-red-500'>{loginError}</p>
+                        }
+                    </div>
                 </form>
 
                 <p className='text-sm text-center mt-3'>New to Doctors Portal? <Link to='/signup' className='text-secondary font-bold'>Create new account</Link></p>
