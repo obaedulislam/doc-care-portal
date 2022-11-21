@@ -11,13 +11,13 @@ console.log(stripePromise);
 const Payment = () => {
 
     const booking = useLoaderData();
-    const navigation = useNavigation();
+    // const navigation = useNavigation();
     const { treatment, price, slot, appointmentDate } = booking;
     console.log('Booking Data', booking);
 
-    if (navigation.state === "loading") {
-        return <Loading></Loading>
-    }
+    // if (navigation.state === "loading") {
+    //     return <Loading></Loading>
+    // }
 
     return (
         <div>
