@@ -6,7 +6,7 @@ const useAdmin = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:4300/users/admin/${email}`)
+      fetch(`https://doc-care-server.vercel.app/users/admin/${email}`)
         .then((res) => res.json())
         .then((data) => {
           console.log(data);

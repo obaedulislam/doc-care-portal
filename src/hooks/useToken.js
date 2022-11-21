@@ -5,7 +5,7 @@ const useToken = (email) => {
 
   useEffect(() => {
     if (email) {
-      fetch(`http://localhost:4300/jwt?email=${email}`)
+      fetch(`https://doc-care-server.vercel.app/jwt?email=${email}`)
         .then((res) => res.json())
         .then((data) => {
           if (data.accessToken) {

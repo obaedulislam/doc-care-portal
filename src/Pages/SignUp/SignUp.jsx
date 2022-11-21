@@ -43,7 +43,7 @@ const SignUp = () => {
     // Save User on Datbase
     const saveUser = (name, email) => {
         const user = { name, email };
-        fetch('http://localhost:4300/users', {
+        fetch('https://doc-care-server.vercel.app/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

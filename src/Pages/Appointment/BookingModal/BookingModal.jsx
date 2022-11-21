@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 
 const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
     //Treatment is just another name of appointmentOptions  with name, slots id
-    const { name: treatmentName, slots } = treatment;
+    const { name: treatmentName, slots, price } = treatment;
     const date = format(selectedDate, 'PP');
     const { user } = useContext(AuthContext);
 
@@ -24,10 +24,11 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             slot,
             patient: name,
             email,
-            phone
+            phone,
+            price
         }
         console.log(booking);
-        fetch('http://localhost:4300/bookings', {
+        fetch('https://doc-care-server.vercel.app/bookings', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

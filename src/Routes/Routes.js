@@ -7,11 +7,13 @@ import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
 import Dashboard from "../Pages/Dashboard/DashBoard/Dashboard";
 import ManageDoctors from "../Pages/Dashboard/MangeDoctors/ManageDoctors";
 import MyAppointment from "../Pages/Dashboard/MyAppointments/MyAppointment";
+import Payment from "../Pages/Dashboard/Payment/Payment";
 
 import Home from "../Pages/Home/Home/Home";
 
 import Login from "../Pages/Login/Login";
 import SignUp from "../Pages/SignUp/SignUp";
+import DisplayError from "../Shared/DisplayError/DisplayError";
 import AdminRoutes from "./AdminRoutes/AdminRoutes";
 import PrivateRoute from "./PrivateRoutes/PrivateRoute";
 
@@ -19,6 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/",
@@ -45,6 +48,7 @@ const router = createBrowserRouter([
         <DashboardLayout></DashboardLayout>
       </PrivateRoute>
     ),
+    errorElement: <DisplayError></DisplayError>,
     children: [
       {
         path: "/dashboard",
@@ -73,6 +77,16 @@ const router = createBrowserRouter([
             <ManageDoctors></ManageDoctors>
           </AdminRoutes>
         ),
+      },
+      {
+        path: "/dashboard/payment/:id",
+        element: (
+          <AdminRoutes>
+            <Payment></Payment>
+          </AdminRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://doc-care-server.vercel.app/booking/${params.id}`),
       },
     ],
   },

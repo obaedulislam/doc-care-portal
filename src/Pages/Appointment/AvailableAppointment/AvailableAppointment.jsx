@@ -13,7 +13,7 @@ const AvailableAppointment = ({ selectedDate }) => {
     const { data: appointmentOptions = [], refetch, isLoading } = useQuery({
         queryKey: ['appointmentOptions', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:4300/appointmentoptions?date=${date}`)
+            const res = await fetch(`https://doc-care-server.vercel.app/v2/appointmentoptions?date=${date}`)
             const data = await res.json();
             return data;
         }
